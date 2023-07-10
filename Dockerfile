@@ -4,7 +4,7 @@ FROM tomcat:9
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Copy your Java WAR file to the container
-COPY target/onlinebookstore.war /usr/local/tomcat/webapps/ROOT.war
+COPY /var/lib/jenkins/workspace/multibranch-pipeline_main/target/onlinebookstore/ /usr/local/tomcat/webapps/ROOT/
 
 # Expose port 8085 for the application
 EXPOSE 8085
