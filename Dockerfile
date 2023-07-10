@@ -1,4 +1,4 @@
-FROM tomcat:9
+FROM tomcat:latest
 
 # Remove the default ROOT application
 RUN rm -rf /usr/local/tomcat/webapps/*
