@@ -46,7 +46,6 @@ pipeline {
         steps {
           script{
             withKubeCredentials(kubectlCredentials: [[ credentialsId: 'k8s', namespace: 'ms' ]]) {
-                sh 'kubectl create namespace ms'
                 sh 'kubectl apply -f kube.yaml'
             }
           }
