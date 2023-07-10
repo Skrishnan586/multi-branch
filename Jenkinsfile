@@ -26,7 +26,7 @@ pipeline {
       stage('Docker Build') {
         steps{
           script{
-            sh 'docker build -t naresh2603/multi:v1 .'
+            sh 'docker build -t harikrishnan586/multi:v1 .'
             //sh 'docker images'
           }
         }
@@ -35,9 +35,9 @@ pipeline {
         steps{
           script{
             withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
-              sh "docker login -u naresh2603 -p ${dockerPassword}"
-              sh 'docker push naresh2603/multi:v1'
-              sh 'docker rmi naresh2603/multi:v1'
+              sh "docker login -u harikrishnan586 -p ${dockerPassword}"
+              sh 'docker push harikrishnan586/multi:v1'
+              sh 'docker rmi harikrishnan586/multi:v1'
             }
           }
         }
@@ -46,6 +46,7 @@ pipeline {
         steps {
           script{
             withKubeCredentials(kubectlCredentials: [[ credentialsId: 'kubernetes', namespace: 'ms' ]]) {
+                sh 'kubectl create namespace ms'
                 sh 'kubectl apply -f kube.yaml'
             }
           }
